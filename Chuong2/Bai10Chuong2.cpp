@@ -2,9 +2,7 @@
 using namespace std;
 
 struct date {
-	int d;
-	int m;
-	int y;
+	int d, m, y;
 };
 
 void nhap(date &day);
@@ -24,24 +22,16 @@ void nhap(date &day) {
 	cin>>day.d>>day.m>>day.y;
 }
 
-bool laNamNhuan(int year) {
-	return ((year%4==0 && year%100!=0) || year%400==0);
+bool kiemTraNamNhuan(int nam) {
+	return ((nam%4==0 && nam%100!=0) || nam%400==0);
 }
 
 bool kiemTra(date &day) {
-	int monthDay[13] = {0, 31, (laNamNhuan(day.y))? 29:28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	if(day.y<0) {		
+	int __day_dict[] = {0, 31, (kiemTraNamNhuan(day.y))? 29:28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	if(day.y<0 || (day.m>12 || day.m<1) || (day.d>__day_dict[day.m] || day.d<0)) 	
 		return false;
-	}
-	if(day.m>12 || day.m<1) {
-		return false;
-	}
-	if(day.d>monthDay[day.m] || day.d<0) {
-		return false;
-	}
-
 	day.d++;
-	if(day.d > monthDay[day.m]) {
+	if(day.d > __day_dict[day.m]) {
 		day.d = 1;
 		day.m++;
 	} 
