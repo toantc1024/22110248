@@ -1,11 +1,11 @@
 #include <iostream>
 #include <algorithm>
-#define ll long long
+#define ll int
 #define fort(i, start, end) for(int i = start; i < end; i++)
 using namespace std;
 
 struct phanso {
-	long long tu, mau;
+	int tu, mau;
 };
 
 struct bundle {
@@ -16,7 +16,7 @@ struct bundle {
 void rutgon(phanso &x);
 bool cmp(phanso a, phanso b);
 void rutgon(phanso &x);
-long long ucln(long long a, long long b);
+int ucln(int a, int b);
 void nghichdao(phanso &x);
 
 // Main functions
@@ -33,7 +33,7 @@ void xuatphanso(phanso x, string buffer);
 void bundle_export(bundle a);
 
 int main() {
-	long long n;
+	int n;
 	phanso a, b;
 	nhap(a, b);
 	bundle ketqua;
@@ -100,7 +100,7 @@ void nhap(phanso &a, phanso &b) {
 	nhapphanso(b);
 }
 
-long long ucln(long long a, long long b) {
+int ucln(int a, int b) {
 	a = abs(a); b = abs(b);
 	if(a==0 || b == 0) {
 		return a + b;
@@ -119,7 +119,7 @@ void rutgon(phanso &x) {
 		x.tu = -x.tu;
 		x.mau = -x.mau;	
 	}
-	long long num = ucln(x.tu, x.mau);
+	int num = ucln(x.tu, x.mau);
 	x.tu = x.tu / num;
 	x.mau = x.mau / num;
 }
