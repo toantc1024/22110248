@@ -1,39 +1,35 @@
-#include <bits/stdc++.h>
-#define db long double
+#include<bits/stdc++.h>
 using namespace std;
 
-void nhap(long long &n);
-void xuat(db a);
-db tinh(long long n);
+void nhap(float &n);
+double process(float n);
+void xuat(float kq);
 
-int main() {
-	long long n;
+int main()
+{
+	float n;
 	nhap(n);
-	cout<<2.72;
-//	db kq = tinh(n);
-//	xuat(kq);
+	double kq = process(n);
+	xuat(kq);
 }
 
-void nhap(long long &n) {
-	cin>>n;
+void xuat(float kq) {
+	cout<< round(kq*100)/100;
 }
 
-void xuat(db a) {
-	cout<<round(a * 100) / 100;
-//	cout<<a;
-//	 printf("Your BMI is calculated at %.2f.\n", a);
-}
-
-db tinh(long long n) {
-	long long t = 1;
-	db s = 1;
-	for(long long i = 1; i <= n; i++) {
-		t *= i;
-		if(i>20) {
-			break;		
-		}
-//		cout<<i<<" "<<t<<" => "<<(db)1/t<<"\n";
-		s += (db)1/t;
+double process(float n) {
+	float s=1;
+	double S=0;
+    for(int i=0;i<=n;i++)
+    {
+    	if(i==0) s=1;
+    	else s*=i;
+    	S+=1.0/s;
 	}
-	return s;
+
+	return S;
+}
+
+void nhap(float &n) {
+	cin>>n;
 }

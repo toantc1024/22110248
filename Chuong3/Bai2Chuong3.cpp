@@ -22,11 +22,5 @@ void xuat(ll a) {
 }
 
 ll tinh(ll n) {
-	ll t = 0;
-	ll s = 0;
-	for(ll i = 1; i <= n; i++) {
-		t += i;
-		s += t;
-	}
-	return s;
+	return n*(n+1)*(n+2)/6;
 }

@@ -4,45 +4,42 @@
 #define fort(start, i, end) for(ll i = start; i < end; i++)
 using namespace std;
 
-struct phanso {
+struct fraction {
 	ll tu, mau;
 };
 
-
-void rutgon(phanso &x);
-bool cmp(phanso a, phanso b);
-void xuatphanso(phanso x, string buffer);
-void nhap(ll &n, phanso a[]);
+void rutgon(fraction &x);
+bool cmp(fraction a, fraction b);
+void xuatfraction(fraction x, string buffer);
+void nhap(ll &n, fraction a[]);
 ll ucln(ll a, ll b);
-void rutgon(phanso &x);
-phanso tong(phanso a, phanso b);
-phanso tich(phanso a, phanso b);
-void nghichdao(phanso &x);
-void timMax(int n, phanso a[], phanso &max);
-void xuly(int n, phanso a[], phanso &kqtong, phanso &kqtich, phanso &vmax);
-void xuat(int n, phanso a[], phanso kqtong, phanso kqtich, phanso max);
+void rutgon(fraction &x);
+fraction tong(fraction a, fraction b);
+fraction tich(fraction a, fraction b);
+void nghichdao(fraction &x);
+void timMax(int n, fraction a[], fraction &max);
+void xuly(int n, fraction a[], fraction &kqtong, fraction &kqtich, fraction &vmax);
+void xuat(int n, fraction a[], fraction kqtong, fraction kqtich, fraction max);
 
 int main() {
 	ll n;
-	phanso a[51];
+	fraction a[51];
 	nhap(n, a);
-	phanso kqtong, kqtich, max;
+	fraction kqtong, kqtich, max;
 	xuly(n, a, kqtong, kqtich, max);
 	xuat(n, a, kqtong, kqtich, max);
 	return 0;
 }
 
-void xuat(int n, phanso a[], phanso kqtong, phanso kqtich, phanso max) {
-	xuatphanso(max, "\n");
-	xuatphanso(kqtong, "\n");
-	xuatphanso(kqtich, "\n");
+void xuat(int n, fraction a[], fraction kqtong, fraction kqtich, fraction max) {
+	xuatfraction(max, "\n");
+	xuatfraction(kqtong, "\n");
+	xuatfraction(kqtich, "\n");
 	fort(0, i, n) 
-		xuatphanso(a[i]," ");
+		xuatfraction(a[i]," ");
 }
 
-
-
-void timMax(int n, phanso a[], phanso &max) {
+void timMax(int n, fraction a[], fraction &max) {
 	max = a[0];
 	fort(1, i, n) {
 		if(cmp(a[i], max)) {
@@ -51,21 +48,21 @@ void timMax(int n, phanso a[], phanso &max) {
 	}
 }
 
-void nghichdao(phanso &x) {
+void nghichdao(fraction &x) {
 	swap(x.tu, x.mau);
 }
 
-bool cmp(phanso a, phanso b) {
+bool cmp(fraction a, fraction b) {
 	return (a.tu*b.mau-b.tu*a.mau > 0);
 }
 
-void xuatphanso(phanso x, string buffer) {
+void xuatfraction(fraction x, string buffer) {
 	rutgon(x);
 	cout<<x.tu<<" "<<x.mau<<buffer;
 }
 
 
-void nhap(ll &n, phanso a[]) {
+void nhap(ll &n, fraction a[]) {
 	cin>>n;
 	fort(0, i, n) {
 		cin>>a[i].tu>>a[i].mau;
@@ -87,7 +84,7 @@ ll ucln(ll a, ll b) {
 	return a;
 }
 
-void rutgon(phanso &x) {
+void rutgon(fraction &x) {
 	if(x.mau<0 && x.tu>0 || x.mau<0 && x.mau<0) {
 		x.tu = -x.tu;
 		x.mau = -x.mau;	
@@ -98,16 +95,16 @@ void rutgon(phanso &x) {
 }
 
 
-phanso tong(phanso a, phanso b) {
-	phanso kqtong;
+fraction tong(fraction a, fraction b) {
+	fraction kqtong;
 	kqtong.tu = a.tu*b.mau+b.tu*a.mau;
 	kqtong.mau = a.mau*b.mau;
 	rutgon(kqtong);
 	return kqtong;
 }
 
-phanso tich(phanso a, phanso b) {
-	phanso kqtich;
+fraction tich(fraction a, fraction b) {
+	fraction kqtich;
 	kqtich.tu = a.tu*b.tu;
 	kqtich.mau = a.mau*b.mau;
 	rutgon(kqtich);
@@ -116,7 +113,7 @@ phanso tich(phanso a, phanso b) {
 
 
 
-void xuly(int n, phanso a[], phanso &kqtong, phanso &kqtich, phanso &vmax) {
+void xuly(int n, fraction a[], fraction &kqtong, fraction &kqtich, fraction &vmax) {
 //	Tim max
 	timMax(n, a, vmax);
 //	Tim tong
