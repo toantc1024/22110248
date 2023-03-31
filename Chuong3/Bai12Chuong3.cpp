@@ -38,16 +38,6 @@ string operator+(string str1, string str2)
 }
 
 string operator*(string num1, string num2) {
-   string buffer = "";
-   if((num1.at(0) == '-' || num2.at(0) == '-') && (num1.at(0) != '-' || num2.at(0) != '-')) {
-	  buffer = "-";
-   }
-   if(num1.at(0) == '-') {
-      num1 = num1.substr(1);
-   }
-   if(num2.at(0) == '-') {
-      num2 = num2.substr(1);
-   }
    if (num1 == "0" || num2 == "0") {
       return "0";
    }
@@ -66,7 +56,7 @@ string operator*(string num1, string num2) {
       return product.substr(1);
    }
    
-   return buffer+product;
+   return product;
 }
 
 string operator/(string number, int divisor)
@@ -90,10 +80,28 @@ string operator/(string number, int divisor)
     return ans;
 }
  
+void input(string &n);
+string process(string n);
+void output(string n);
+ 
 int main() {
 	string n;
-	cin>>n;
-	string buff = "1";
-	cout<<n*(n+buff)*(n+buff+buff)/6;
+	input(n);
+	string kq = process(n);
+	output(kq);
    return 0;
+}
+
+void input(string &n) {
+	cin>>n;
+}
+
+string process(string n) {
+	string buff = "1";
+	return n*(n+buff)*(n+buff+buff)/6;
+}
+
+
+void output(string n) {
+	cout<<n;
 }

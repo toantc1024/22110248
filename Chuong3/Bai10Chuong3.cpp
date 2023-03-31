@@ -11,6 +11,7 @@ int main() {
 	int thuong = 0, hoa = 0, so = 0, khac = 0;
 	process(s, thuong, hoa, so, khac);
 	output(thuong, hoa, so, khac);
+	return 0;
 }
 
 void input(string &a) {
