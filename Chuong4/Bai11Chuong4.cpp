@@ -2,6 +2,7 @@
 using namespace std;
 
 void nhap(int &n);
+void xuat(vector<int> a);
 void binGen(int i, int n, vector<int> bin);
 
 int main() {
@@ -11,16 +12,20 @@ int main() {
 	binGen(0, n, bin);
 	return 0;
 }
+
 void nhap(int &n) {
 	cin>>n;
 }
 
+void xuat(vector<int> a) {
+	for(int j = 0; j < a.size(); j++) 
+		cout<<a[j]<<" ";
+	cout<<"\n";	
+}
+
 void binGen(int i, int n, vector<int> bin) {
 	if(i == n) {
-		for(int j = 0; j < bin.size(); j++) {
-			cout<<bin[j]<<" ";
-		}
-		cout<<"\n";
+		xuat(bin);
 	} else {
 		for(int k = 0; k <= 1; k++) {
 			bin.push_back(k);
