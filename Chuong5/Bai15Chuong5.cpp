@@ -1,47 +1,62 @@
-#include <iostream>
-#include <cmath>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
- 
-void _to_bin(int num, vector<int> * out) {
-    if (num / 2)
-        _to_bin(num/2, out);
-    out->push_back(num % 2);
-}
 
-void to_bin(int num, int numDigit) {
-    vector<int> out;
-    _to_bin(num, &out);
-    for(int i = 0; i < numDigit - out.size(); ++i)
-        cout << 0;
-    for(int i = 0; i < out.size(); ++i)
-        cout << out.at(i);
-    cout << endl;
-}
-
-void to0101(int numDigit) {
-    for(int fist_01_pos = 0; fist_01_pos < numDigit - 1; ++fist_01_pos) {
-        int mask = 0;
-        mask |= (1 << fist_01_pos);
-        for(int second_01_pos = 2 + fist_01_pos; second_01_pos < numDigit - 1; ++second_01_pos) {
-            int result = mask;
-            result |= (1 << second_01_pos);
-            to_bin(result, numDigit);
-        }
-    }
-
-    for(int fist_01_pos = 0; fist_01_pos < numDigit - 1; ++fist_01_pos) {
-        int mask = (int)pow(2,numDigit) - 1;
-        mask ^= (2 << fist_01_pos);
-        for(int second_01_pos = 2 + fist_01_pos; second_01_pos < numDigit - 1; ++second_01_pos) {
-            int result = mask;
-            result ^= (2 << second_01_pos);
-            to_bin(result, numDigit);
-        }
-    }
-}
+void nhap(int &n);
+bool gen(string &a);
+void xuly(int n, vector<string> &a);
+void xuat(vector<string> a);
 
 int main() {
-    to0101(5);
-    return 0;
+	int n;
+	nhap(n);
+	vector<string> bin;
+	xuly(n, bin);
+	xuat(bin);
+	return 0;
 }
+
+
+void nhap(int &n) {
+	cin>>n;
+}
+
+bool gen(string &a) {
+	for(int i = a.size() - 1; i >= 0; i--) {
+		if(a[i] == '0') {
+			a[i] = '1';
+			return true;
+		} else {
+			a[i] = '0';
+		}
+	}
+	return false;
+}
+
+bool check(string s) {
+	int count = 0;
+	for(int i = 0; i < s.size() -1; i++) {
+		if(s[i] == '0' && s[i+1] == '1') {
+			count++;
+			i++;
+		}
+	}
+	return (count == 2);
+}
+
+void xuly(int n, vector<string> &a) {
+	string s = "";
+	for(int i = 0; i < n; i++)
+		s = s + "0";	
+	while(gen(s)) {
+		if(check(s)) {
+			a.push_back(s);
+		}
+	}
+}
+
+void xuat(vector<string> a) {
+	for(int i = 0; i < a.size(); i++) {
+		cout<<a[i]<<"\n";
+	}
+}
+
